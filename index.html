@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Professional Profile</title>
+<title>Xumin 'Amy' Zeng - Data Analyst</title>
 
 <style>
   body {
@@ -11,31 +11,34 @@
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
     background-color: #f5f7fa;
     color: #1f2937;
+    line-height: 1.6;
   }
 
-  .container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 40px 24px;
+  header {
+    background-color: #0d6efd;
+    color: #fff;
+    text-align: center;
+    padding: 40px 20px;
   }
 
   header h1 {
     font-size: 36px;
-    font-weight: 600;
     margin: 0;
+    font-weight: 600;
   }
 
   header p {
     margin-top: 8px;
-    color: #6b7280;
     font-size: 16px;
+    color: #ffffff;
   }
 
   .tabs {
     display: flex;
+    justify-content: center;
     gap: 24px;
+    background-color: #fff;
     border-bottom: 1px solid #e5e7eb;
-    margin: 32px 0 24px;
   }
 
   .tab {
@@ -44,11 +47,18 @@
     font-weight: 500;
     color: #6b7280;
     border-bottom: 2px solid transparent;
+    transition: color 0.3s, border-bottom-color 0.3s;
   }
 
   .tab.active {
     color: #111827;
     border-bottom-color: #2563eb;
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 24px;
   }
 
   .content-section {
@@ -57,24 +67,27 @@
     border-radius: 12px;
     padding: 32px;
     box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+    margin-top: 24px;
   }
 
   .content-section.active {
     display: block;
   }
 
-  /* ===== Project List: horizontal ===== */
+  /* ===== Project List Horizontal ===== */
   .project-list {
     display: flex;
-    gap: 32px; /* 每个项目间距 */
+    gap: 32px;
     overflow-x: auto;
     padding-bottom: 8px;
+    white-space: nowrap;
   }
 
   .project-row {
+    display: inline-block;
     text-decoration: none;
-    flex: 0 0 300px; /* 每个项目固定宽度 */
-    display: block;
+    width: 300px;
+    flex-shrink: 0;
   }
 
   .project-image-wrapper {
@@ -84,7 +97,7 @@
     border-radius: 18px;
     overflow: hidden;
     box-shadow: 0 14px 40px rgba(0,0,0,0.12);
-    margin-bottom: 12px; /* 项目名在图片下方时 */
+    margin-bottom: 12px;
   }
 
   .project-image-wrapper img {
@@ -99,21 +112,18 @@
     transform: scale(1.04);
   }
 
-  /* ===== Project Name ===== */
   .project-title {
     font-size: 18px;
     font-weight: 600;
     color: #111827;
     text-align: center;
-    max-width: 100%;
   }
 
-  /* ===== Hover Description Overlay ===== */
   .project-tooltip {
     position: absolute;
     inset: 0;
-    background: rgba(17, 24, 39, 0.88);
-    color: #ffffff;
+    background: rgba(17,24,39,0.88);
+    color: #fff;
     padding: 20px;
     font-size: 14px;
     line-height: 1.5;
@@ -130,56 +140,63 @@
     opacity: 1;
   }
 
-  /* Scrollbar styling optional */
-  .project-list::-webkit-scrollbar {
-    height: 8px;
+  .skills span {
+    display: inline-block;
+    background-color: #e2e6ea;
+    color: #333;
+    padding: 5px 10px;
+    margin: 5px 5px 0 0;
+    border-radius: 5px;
+    font-size: 0.9em;
   }
 
-  .project-list::-webkit-scrollbar-thumb {
-    background: rgba(0,0,0,0.2);
-    border-radius: 4px;
+  section h2 {
+    border-bottom: 2px solid #0d6efd;
+    padding-bottom: 5px;
+    color: #0d6efd;
+    margin-top: 0;
   }
 
-  .project-list::-webkit-scrollbar-track {
-    background: transparent;
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  ul li {
+    margin-bottom: 10px;
   }
 
   @media (max-width: 768px) {
-    .project-row {
-      flex: 0 0 80%; /* 手机端每个项目占屏幕 80% */
-    }
-
-    .project-image-wrapper {
-      height: 180px;
-    }
+    .project-row { width: 80%; }
+    .project-image-wrapper { height: 180px; }
   }
 
 </style>
 </head>
 
 <body>
+<header>
+  <h1>Xumin 'Amy' Zeng</h1>
+  <p>Data Analyst / Engineer | Westborough, MA | 207.423.9416 | <a href="mailto:amyzeng980@gmail.com" style="color:#fff;">amyzeng980@gmail.com</a> | <a href="https://amyzeng2021.github.io/profile/" target="_blank" style="color:#fff;">Portfolio</a></p>
+</header>
+
+<div class="tabs">
+  <div class="tab active" data-tab="projects">Projects</div>
+  <div class="tab" data-tab="about">About</div>
+  <div class="tab" data-tab="contacts">Contacts</div>
+</div>
+
 <div class="container">
-  <header>
-    <h1>Amy Zeng</h1>
-    <p>Data Engineer / Analyst</p>
-  </header>
-
-  <div class="tabs">
-    <div class="tab active" data-tab="projects">Projects</div>
-    <div class="tab" data-tab="about">About</div>
-    <div class="tab" data-tab="contacts">Contacts</div>
-  </div>
-
-  <div id="projects" class="content-section active">
+  <!-- Projects Section -->
+  <section id="projects" class="content-section active">
     <h2>Projects</h2>
-
     <div class="project-list">
 
       <a class="project-row" href="https://amyzeng2021.github.io/Loisaida/" target="_blank">
         <div class="project-image-wrapper">
           <img src="Energy.png" alt="Loisaida Ecolibrium">
           <div class="project-tooltip">
-            Ecolibrium Analysis for multi-family buildings in Manhattan including building energy efficiency, solar potentials and storm water protentials, tree maps and ecological benefits.
+            Ecolibrium Analysis for multi-family buildings in Manhattan including building energy efficiency, solar potentials, storm water potentials, tree maps, and ecological benefits.
           </div>
         </div>
         <div class="project-title">Loisaida Ecolibrium Dashboards</div>
@@ -216,7 +233,92 @@
       </a>
 
     </div>
-  </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="content-section">
+    <h2>About</h2>
+
+    <h3>Objective</h3>
+    <p>Xumin Zeng has 5+ years of data analysis and data engineering experience in predictive analytics, model development, data governance, Extract-Transform-Load, data migration jobs.</p>
+
+    <h3>Experience</h3>
+    <ul>
+      <li>
+        <strong>Data/Information Architect</strong> | Knowesis Inc (Remote) | Oct 2022 – Jun 2025
+        <ul>
+          <li>Developed and maintained data models and dashboards using facilities, clinical, operational, personnel, and cost/expense data in support of DHA.</li>
+          <li>Provided support to internal customers on modification, implementation, integration, and sustainment of data and data processes using SQL queries and stored procedures.</li>
+          <li>Designed and implemented scripts to automate data processing and data quality checks to improve accuracy.</li>
+          <li>Implemented ETL processes and pipelines from various sources including databases, APIs, and data files.</li>
+          <li>Environment: Windows, MS SQL Server, Python, Redshift, S3, HealthAnalytics.</li>
+        </ul>
+      </li>
+
+      <li>
+        <strong>Data Analyst</strong> | Loisaida Inc (Remote) | Jul 2022 – Oct 2022
+        <ul>
+          <li>Conducted urban environmental analysis and provided suggestions on nature-based solutions.</li>
+          <li>Collected raw data from public sources on environmental conditions, energy usage, GHG emissions, and US Census data.</li>
+          <li>Created dashboards for energy usage, GHG emissions, building solar potentials, tree map and ecosystem benefits.</li>
+          <li>Environment: Windows, Python, Plotly Dash, Geopandas, Shapefiles, R, R Shiny, Tableau.</li>
+        </ul>
+      </li>
+
+      <li>
+        <strong>Data Science Fellowship</strong> | NYC Data Science Academy | Aug 2021 – Jun 2022
+        <ul>
+          <li>Project-based learning in R, Python, MySQL covering regression, classification, and unsupervised learning methods.</li>
+          <li>Generated prediction and classification models for healthcare fraud, house prices, and store sales projects.</li>
+          <li>Conducted Exploratory Data Analysis for US Accident Analysis and COVID-19 trends.</li>
+          <li>WebScraping, SQL analysis, and data visualization projects.</li>
+          <li>Environment: Windows, Python, R, R Shiny, MySQL Workbench, Git, Linux, Docker.</li>
+        </ul>
+      </li>
+
+      <li>
+        <strong>Clinical Application Analyst</strong> | Delta Pharma Company (Abbott Onsite Contractor) | Dec 2009 – Apr 2010
+        <ul>
+          <li>Developed and improved statistical analysis tools with SAS, R, Excel/VBA, JMP, and JSP.</li>
+          <li>Maintained departmental website using JSP & UNIX.</li>
+        </ul>
+      </li>
+
+      <li>
+        <strong>Data Analyst</strong> | Smith Hanley Consulting Group (Eli Lilly Onsite Contractor) | Apr 2008 – May 2009
+        <ul>
+          <li>Developed SAS validation programs for Phase II/III clinical trials of breast cancer/diabetes drugs.</li>
+          <li>Created tables, listings, graphs, and Limited Use Macros (LUMs) for Clinical Summary of Safety (CSS).</li>
+          <li>Performed User Acceptance Testing (UAT) and validated analysis datasets.</li>
+          <li>Environment: Windows, SAS/SQL, SAS/BASE, SAS/STAT, SAS/GRAPH, Excel.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>Education</h3>
+    <ul>
+      <li>University of Nebraska-Lincoln, MS in Statistics, 2007</li>
+      <li>Liaoning University of Petroleum and Chemical Technology, BS in Computer Science, 1998</li>
+    </ul>
+
+    <h3>Technical Skills & Abilities</h3>
+    <div class="skills">
+      <span>Data Science</span><span>Statistics</span><span>Programming</span><span>Dashboards</span>
+      <span>Python</span><span>PySpark</span><span>R/Shiny</span><span>SQL</span>
+      <span>Tableau</span><span>Excel</span><span>Data Engineering</span><span>Data Architecture</span>
+      <span>Data Warehousing</span><span>MS SQL Server</span><span>Redshift</span><span>S3</span>
+      <span>MySQL</span><span>Oracle</span><span>Linux</span><span>Docker</span>
+      <span>C++</span><span>SAS</span><span>C#</span><span>JavaScript</span>
+    </div>
+  </section>
+
+  <!-- Contacts Section -->
+  <section id="contacts" class="content-section">
+    <h2>Contacts</h2>
+    <p>Email: <a href="mailto:amyzeng980@gmail.com">amyzeng980@gmail.com</a></p>
+    <p>Phone: 207.423.9416</p>
+    <p>Portfolio: <a href="https://amyzeng2021.github.io/profile/" target="_blank">https://amyzeng2021.github.io/profile/</a></p>
+  </section>
 </div>
 
 <script>
@@ -227,11 +329,12 @@
     tab.addEventListener('click', () => {
       tabs.forEach(t => t.classList.remove('active'));
       sections.forEach(s => s.classList.remove('active'));
+
       tab.classList.add('active');
       document.getElementById(tab.dataset.tab).classList.add('active');
     });
   });
 </script>
+
 </body>
 </html>
-
