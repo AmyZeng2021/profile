@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Professional Profile</title>
+
   <style>
     body {
       margin: 0;
@@ -11,30 +12,32 @@
       background-color: #f5f7fa;
       color: #1f2937;
     }
+
     .container {
       max-width: 1000px;
       margin: 0 auto;
       padding: 40px 24px;
     }
-    header {
-      margin-bottom: 32px;
-    }
+
     header h1 {
       font-size: 36px;
       font-weight: 600;
       margin: 0;
     }
+
     header p {
       margin-top: 8px;
       color: #6b7280;
       font-size: 16px;
     }
+
     .tabs {
       display: flex;
       gap: 24px;
       border-bottom: 1px solid #e5e7eb;
-      margin-bottom: 24px;
+      margin: 32px 0 24px;
     }
+
     .tab {
       padding: 12px 0;
       cursor: pointer;
@@ -42,109 +45,90 @@
       color: #6b7280;
       border-bottom: 2px solid transparent;
     }
+
     .tab.active {
       color: #111827;
       border-bottom-color: #2563eb;
     }
+
     .content-section {
       display: none;
       background: #ffffff;
       border-radius: 12px;
-      padding: 24px;
+      padding: 32px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.04);
     }
+
     .content-section.active {
       display: block;
     }
-    table {
-      width: 100%;
-      border-collapse: collapse;
+
+    /* ===== Project List Layout ===== */
+
+    .project-list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
     }
-    th, td {
-      padding: 14px 12px;
-      text-align: left;
-    }
-    th {
-      background-color: #f3f4f6;
-      font-weight: 600;
-    }
-    tr:not(:last-child) td {
-      border-bottom: 1px solid #e5e7eb;
-    }
-    a {
-      color: #2563eb;
+
+    .project-item {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      padding: 20px;
+      border-radius: 14px;
       text-decoration: none;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      transition: box-shadow 0.25s ease, transform 0.25s ease;
     }
-    a:hover {
-      text-decoration: underline;
+
+    .project-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.08);
     }
-    .contact-item {
-      margin-bottom: 12px;
+
+    .project-image {
+      width: 180px;
+      height: 120px;
+      flex-shrink: 0;
+      border-radius: 10px;
+      object-fit: cover;
     }
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 24px;
-  margin-top: 24px;
-}
 
-.project-card {
-  position: relative;
-  border-radius: 16px;
-  overflow: hidden;
-  text-decoration: none;
-  box-shadow: 0 12px 32px rgba(0,0,0,0.08);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
+    .project-info h3 {
+      margin: 0 0 8px;
+      font-size: 20px;
+      font-weight: 600;
+      color: #111827;
+    }
 
-.project-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
-}
+    .project-info p {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.6;
+      color: #4b5563;
+    }
 
-.project-card img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  display: block;
-}
+    @media (max-width: 768px) {
+      .project-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
 
-.project-card .overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(17, 24, 39, 0.85);
-  color: #ffffff;
-  padding: 20px;
-  opacity: 0;
-  transition: opacity 0.25s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.project-card:hover .overlay {
-  opacity: 1;
-}
-
-.project-card h3 {
-  margin: 0 0 8px;
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.project-card p {
-  font-size: 14px;
-  line-height: 1.5;
-  color: #e5e7eb;
-}
-
+      .project-image {
+        width: 100%;
+        height: 180px;
+      }
+    }
   </style>
 </head>
+
 <body>
   <div class="container">
     <header>
       <h1>Amy Zeng</h1>
-      <p>Data Engineer/Analyst</p>
+      <p>Data Engineer / Analyst</p>
     </header>
 
     <div class="tabs">
@@ -153,58 +137,91 @@
       <div class="tab" data-tab="contacts">Contacts</div>
     </div>
 
-<div id="projects" class="content-section active">
-  <h2>Projects</h2>
+    <!-- Projects -->
+    <div id="projects" class="content-section active">
+      <h2>Projects</h2>
 
-  <div class="project-grid">
+      <div class="project-list">
 
-    <a class="project-card" href="https://github.com/AmyZeng2021/Manhattan_CB3?tab=readme-ov-file" target="_blank">
-      <img src="Energy.jpg" alt="Loisaida Ecolibrium">
-      <div class="overlay">
-        <h3>Loisaida Ecolibrium Dashboards</h3>
-        <p>
-          Energy efficiency analysis for multi-family buildings, including solar,
-          storm water potential, and ecological benefits in Manhattan.
-        </p>
+        <a class="project-item"
+           href="https://github.com/AmyZeng2021/Manhattan_CB3?tab=readme-ov-file"
+           target="_blank"
+           title="Loisaida Ecolibrium – Energy efficiency dashboards">
+
+          <img src="Energy.jpg"
+               class="project-image"
+               alt="Loisaida Ecolibrium"
+               title="Energy, solar, stormwater & ecological analysis">
+
+          <div class="project-info">
+            <h3>Loisaida Ecolibrium Dashboards</h3>
+            <p>
+              Energy efficiency analysis for multi-family buildings in Manhattan,
+              including solar potential, storm water management, and ecological benefits.
+            </p>
+          </div>
+        </a>
+
+        <a class="project-item"
+           href="https://github.com/AmyZeng2021/HealthCare_Fraud_Detection"
+           target="_blank"
+           title="Healthcare Fraud Detection using claims data">
+
+          <img src="Fraud.jpg"
+               class="project-image"
+               alt="Healthcare Fraud Detection"
+               title="Predictive modeling for healthcare fraud">
+
+          <div class="project-info">
+            <h3>Healthcare Fraud Detection</h3>
+            <p>
+              Analyzed provider behavior and built predictive models to identify
+              potential healthcare fraud using insurance claims data.
+            </p>
+          </div>
+        </a>
+
+        <a class="project-item"
+           href="https://github.com/AmyZeng2021/House_Price_Prediction"
+           target="_blank"
+           title="Ames housing price machine learning project">
+
+          <img src="Homeprice.jpg"
+               class="project-image"
+               alt="House Price Prediction"
+               title="RMSE-based house price prediction">
+
+          <div class="project-info">
+            <h3>Ames House Price Prediction</h3>
+            <p>
+              Machine learning model to predict housing prices using log-transformed
+              sale prices and RMSE evaluation.
+            </p>
+          </div>
+        </a>
+
+        <a class="project-item"
+           href="https://github.com/AmyZeng2021/US-Accident-Analysis-EDA"
+           target="_blank"
+           title="US traffic accident exploratory data analysis">
+
+          <img src="Accident.jpg"
+               class="project-image"
+               alt="US Accident Analysis"
+               title="EDA for traffic safety insights">
+
+          <div class="project-info">
+            <h3>US Accident Analysis (EDA)</h3>
+            <p>
+              Exploratory data analysis to uncover trends and risk factors in U.S.
+              traffic accidents, supporting road safety improvements.
+            </p>
+          </div>
+        </a>
+
       </div>
-    </a>
-
-    <a class="project-card" href="https://github.com/AmyZeng2021/HealthCare_Fraud_Detection" target="_blank">
-      <img src="Fraud.jpg" alt="Healthcare Fraud">
-      <div class="overlay">
-        <h3>Healthcare Fraud Detection</h3>
-        <p>
-          Analyzed provider behavior and built predictive models to flag potential
-          healthcare fraud using claims data.
-        </p>
-      </div>
-    </a>
-
-    <a class="project-card" href="https://github.com/AmyZeng2021/House_Price_Prediction" target="_blank">
-      <img src="Homeprice.jpg" alt="House Price Prediction">
-      <div class="overlay">
-        <h3>Ames House Price Prediction</h3>
-        <p>
-          Machine learning model to predict house prices using RMSE on log-transformed
-          sale prices.
-        </p>
-      </div>
-    </a>
-
-    <a class="project-card" href="https://github.com/AmyZeng2021/US-Accident-Analysis-EDA" target="_blank">
-      <img src="Accident.jpg" alt="US Accident Analysis">
-      <div class="overlay">
-        <h3>US Accident Analysis (EDA)</h3>
-        <p>
-          Exploratory data analysis to uncover insights that help improve road safety
-          measures.
-        </p>
-      </div>
-    </a>
-
+    </div>
   </div>
-</div>
-
 
   <script>
     const tabs = document.querySelectorAll('.tab');
@@ -222,8 +239,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
