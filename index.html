@@ -68,98 +68,81 @@
     .project-list {
       display: flex;
       flex-direction: column;
-      gap: 28px;
-      margin-top: 24px;
-    }
-    
-    .project-row {
-      display: flex;
-      align-items: center;
-      gap: 32px;
-      text-decoration: none;
-      position: relative;
+      gap: 48px; /* 项目之间更大的间距 */
+      margin-top: 32px;
     }
 
-    /* Image */
+    .project-row {
+      text-decoration: none;
+      display: block;
+    }
+
     .project-image-wrapper {
-  position: relative;
-  flex: 0 0 60%;          /* 占整行 60% */
-  height: 220px;          /* 比之前更大，更有存在感 */
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 12px 36px rgba(0,0,0,0.1);
-}
+      position: relative;
+      width: 100%;
+      height: 260px;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 14px 40px rgba(0,0,0,0.12);
+    }
 
     .project-image-wrapper img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
+      transition: transform 0.4s ease;
     }
 
-    /* Hover description */
+    .project-row:hover img {
+      transform: scale(1.04);
+    }
+
+    /* ===== Project Name on Image ===== */
+
+    .project-title {
+      position: absolute;
+      left: 24px;
+      bottom: 24px;
+      font-size: 24px;
+      font-weight: 600;
+      color: #ffffff;
+      z-index: 2;
+      text-shadow: 0 4px 14px rgba(0,0,0,0.6);
+      max-width: 80%;
+      line-height: 1.3;
+    }
+
+    /* ===== Hover Description Overlay ===== */
+
     .project-tooltip {
       position: absolute;
       inset: 0;
       background: rgba(17, 24, 39, 0.88);
       color: #ffffff;
-      padding: 20px;
-      font-size: 14px;
+      padding: 28px;
+      font-size: 15px;
       line-height: 1.6;
       opacity: 0;
-      transition: opacity 0.25s ease;
+      transition: opacity 0.3s ease;
       display: flex;
       align-items: center;
+      z-index: 1;
     }
 
-    .project-image-wrapper:hover .project-tooltip,
-    .project-name:hover + .project-tooltip-text {
-      opacity: 1;
-    }
-
-    /* Project name */
-    .project-name {
-  flex: 0 0 40%;          /* 剩余 40% */
-  font-size: 20px;        /* 稍微放大，和大图平衡 */
-  font-weight: 600;
-  color: #111827;
-  position: relative;
-}
-
-    /* Tooltip for text hover */
-    .project-tooltip-text {
-      position: absolute;
-      left: 300px;
-      top: 50%;
-      transform: translateY(-50%);
-      max-width: 360px;
-      background: rgba(17, 24, 39, 0.95);
-      color: #ffffff;
-      padding: 16px 18px;
-      border-radius: 10px;
-      font-size: 14px;
-      line-height: 1.6;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.25s ease;
-      box-shadow: 0 12px 32px rgba(0,0,0,0.25);
-      z-index: 10;
-    }
-
-    .project-name:hover .project-tooltip-text {
+    .project-image-wrapper:hover .project-tooltip {
       opacity: 1;
     }
 
     @media (max-width: 768px) {
-      .project-row {
-        flex-direction: column;
-        align-items: flex-start;
+      .project-image-wrapper {
+        height: 220px;
       }
 
-      .project-tooltip-text {
-        position: static;
-        transform: none;
-        margin-top: 12px;
+      .project-title {
+        font-size: 20px;
+        left: 18px;
+        bottom: 18px;
       }
     }
   </style>
@@ -188,18 +171,15 @@
            target="_blank">
 
           <div class="project-image-wrapper">
-            <img src="Energy.png" alt="Loisaida Ecolibrium">
+            <img src="Energy.jpg" alt="Loisaida Ecolibrium">
+
+            <div class="project-title">
+              Loisaida Ecolibrium Dashboards
+            </div>
+
             <div class="project-tooltip">
               Energy efficiency analysis for multi-family buildings in Manhattan,
               including solar potential, storm water management, and ecological benefits.
-            </div>
-          </div>
-
-          <div class="project-name">
-            Loisaida Ecolibrium Dashboards
-            <div class="project-tooltip-text">
-              Energy efficiency analysis for multi-family buildings in Manhattan,
-              including solar, storm water potential, and ecological benefits.
             </div>
           </div>
         </a>
@@ -209,16 +189,13 @@
            target="_blank">
 
           <div class="project-image-wrapper">
-            <img src="Fraud.jpg" alt="Healthcare Fraud">
-            <div class="project-tooltip">
-              Built predictive models on claims data to identify suspicious provider
-              behavior and potential healthcare fraud.
-            </div>
-          </div>
+            <img src="Fraud.jpg" alt="Healthcare Fraud Detection">
 
-          <div class="project-name">
-            Healthcare Fraud Detection
-            <div class="project-tooltip-text">
+            <div class="project-title">
+              Healthcare Fraud Detection
+            </div>
+
+            <div class="project-tooltip">
               Analyzed provider behavior and built predictive models to flag potential
               healthcare fraud using insurance claims data.
             </div>
@@ -231,15 +208,12 @@
 
           <div class="project-image-wrapper">
             <img src="Homeprice.jpg" alt="House Price Prediction">
-            <div class="project-tooltip">
-              Machine learning model predicting housing prices using RMSE on
-              log-transformed sale prices.
-            </div>
-          </div>
 
-          <div class="project-name">
-            Ames House Price Prediction
-            <div class="project-tooltip-text">
+            <div class="project-title">
+              Ames House Price Prediction
+            </div>
+
+            <div class="project-tooltip">
               Machine learning model to predict housing prices using log-transformed
               sale prices and RMSE evaluation.
             </div>
@@ -252,15 +226,12 @@
 
           <div class="project-image-wrapper">
             <img src="Accident.jpg" alt="US Accident Analysis">
-            <div class="project-tooltip">
-              Exploratory data analysis uncovering trends and risk factors
-              in U.S. traffic accidents.
-            </div>
-          </div>
 
-          <div class="project-name">
-            US Accident Analysis (EDA)
-            <div class="project-tooltip-text">
+            <div class="project-title">
+              US Accident Analysis (EDA)
+            </div>
+
+            <div class="project-tooltip">
               Exploratory data analysis to uncover trends and insights that support
               improved traffic safety decisions.
             </div>
@@ -286,6 +257,3 @@
   </script>
 </body>
 </html>
-
-
-
