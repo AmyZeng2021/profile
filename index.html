@@ -63,62 +63,103 @@
       display: block;
     }
 
-    /* ===== Project List Layout ===== */
+    /* ===== Project List ===== */
 
     .project-list {
       display: flex;
       flex-direction: column;
-      gap: 24px;
+      gap: 28px;
+      margin-top: 24px;
     }
 
-    .project-item {
+    .project-row {
       display: flex;
-      gap: 24px;
       align-items: center;
-      padding: 20px;
-      border-radius: 14px;
+      gap: 32px;
       text-decoration: none;
-      background: #ffffff;
-      border: 1px solid #e5e7eb;
-      transition: box-shadow 0.25s ease, transform 0.25s ease;
+      position: relative;
     }
 
-    .project-item:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(0,0,0,0.08);
-    }
-
-    .project-image {
-      width: 180px;
-      height: 120px;
+    /* Image */
+    .project-image-wrapper {
+      position: relative;
+      width: 260px;
+      height: 160px;
       flex-shrink: 0;
-      border-radius: 10px;
-      object-fit: cover;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.08);
     }
 
-    .project-info h3 {
-      margin: 0 0 8px;
-      font-size: 20px;
+    .project-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Hover description */
+    .project-tooltip {
+      position: absolute;
+      inset: 0;
+      background: rgba(17, 24, 39, 0.88);
+      color: #ffffff;
+      padding: 20px;
+      font-size: 14px;
+      line-height: 1.6;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      display: flex;
+      align-items: center;
+    }
+
+    .project-image-wrapper:hover .project-tooltip,
+    .project-name:hover + .project-tooltip-text {
+      opacity: 1;
+    }
+
+    /* Project name */
+    .project-name {
+      font-size: 22px;
       font-weight: 600;
       color: #111827;
+      position: relative;
     }
 
-    .project-info p {
-      margin: 0;
-      font-size: 15px;
+    /* Tooltip for text hover */
+    .project-tooltip-text {
+      position: absolute;
+      left: 300px;
+      top: 50%;
+      transform: translateY(-50%);
+      max-width: 360px;
+      background: rgba(17, 24, 39, 0.95);
+      color: #ffffff;
+      padding: 16px 18px;
+      border-radius: 10px;
+      font-size: 14px;
       line-height: 1.6;
-      color: #4b5563;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+      z-index: 10;
+    }
+
+    .project-name:hover .project-tooltip-text {
+      opacity: 1;
     }
 
     @media (max-width: 768px) {
-      .project-item {
+      .project-row {
         flex-direction: column;
         align-items: flex-start;
       }
 
-      .project-image {
-        width: 100%;
-        height: 180px;
+      .project-tooltip-text {
+        position: static;
+        transform: none;
+        margin-top: 12px;
       }
     }
   </style>
@@ -137,85 +178,92 @@
       <div class="tab" data-tab="contacts">Contacts</div>
     </div>
 
-    <!-- Projects -->
     <div id="projects" class="content-section active">
       <h2>Projects</h2>
 
       <div class="project-list">
 
-        <a class="project-item"
+        <a class="project-row"
            href="https://github.com/AmyZeng2021/Manhattan_CB3?tab=readme-ov-file"
-           target="_blank"
-           title="Loisaida Ecolibrium – Energy efficiency dashboards">
+           target="_blank">
 
-          <img src="Energy.jpg"
-               class="project-image"
-               alt="Loisaida Ecolibrium"
-               title="Energy, solar, stormwater & ecological analysis">
-
-          <div class="project-info">
-            <h3>Loisaida Ecolibrium Dashboards</h3>
-            <p>
+          <div class="project-image-wrapper">
+            <img src="Energy.jpg" alt="Loisaida Ecolibrium">
+            <div class="project-tooltip">
               Energy efficiency analysis for multi-family buildings in Manhattan,
               including solar potential, storm water management, and ecological benefits.
-            </p>
+            </div>
+          </div>
+
+          <div class="project-name">
+            Loisaida Ecolibrium Dashboards
+            <div class="project-tooltip-text">
+              Energy efficiency analysis for multi-family buildings in Manhattan,
+              including solar, storm water potential, and ecological benefits.
+            </div>
           </div>
         </a>
 
-        <a class="project-item"
+        <a class="project-row"
            href="https://github.com/AmyZeng2021/HealthCare_Fraud_Detection"
-           target="_blank"
-           title="Healthcare Fraud Detection using claims data">
+           target="_blank">
 
-          <img src="Fraud.jpg"
-               class="project-image"
-               alt="Healthcare Fraud Detection"
-               title="Predictive modeling for healthcare fraud">
+          <div class="project-image-wrapper">
+            <img src="Fraud.jpg" alt="Healthcare Fraud">
+            <div class="project-tooltip">
+              Built predictive models on claims data to identify suspicious provider
+              behavior and potential healthcare fraud.
+            </div>
+          </div>
 
-          <div class="project-info">
-            <h3>Healthcare Fraud Detection</h3>
-            <p>
-              Analyzed provider behavior and built predictive models to identify
-              potential healthcare fraud using insurance claims data.
-            </p>
+          <div class="project-name">
+            Healthcare Fraud Detection
+            <div class="project-tooltip-text">
+              Analyzed provider behavior and built predictive models to flag potential
+              healthcare fraud using insurance claims data.
+            </div>
           </div>
         </a>
 
-        <a class="project-item"
+        <a class="project-row"
            href="https://github.com/AmyZeng2021/House_Price_Prediction"
-           target="_blank"
-           title="Ames housing price machine learning project">
+           target="_blank">
 
-          <img src="Homeprice.jpg"
-               class="project-image"
-               alt="House Price Prediction"
-               title="RMSE-based house price prediction">
+          <div class="project-image-wrapper">
+            <img src="Homeprice.jpg" alt="House Price Prediction">
+            <div class="project-tooltip">
+              Machine learning model predicting housing prices using RMSE on
+              log-transformed sale prices.
+            </div>
+          </div>
 
-          <div class="project-info">
-            <h3>Ames House Price Prediction</h3>
-            <p>
+          <div class="project-name">
+            Ames House Price Prediction
+            <div class="project-tooltip-text">
               Machine learning model to predict housing prices using log-transformed
               sale prices and RMSE evaluation.
-            </p>
+            </div>
           </div>
         </a>
 
-        <a class="project-item"
+        <a class="project-row"
            href="https://github.com/AmyZeng2021/US-Accident-Analysis-EDA"
-           target="_blank"
-           title="US traffic accident exploratory data analysis">
+           target="_blank">
 
-          <img src="Accident.jpg"
-               class="project-image"
-               alt="US Accident Analysis"
-               title="EDA for traffic safety insights">
+          <div class="project-image-wrapper">
+            <img src="Accident.jpg" alt="US Accident Analysis">
+            <div class="project-tooltip">
+              Exploratory data analysis uncovering trends and risk factors
+              in U.S. traffic accidents.
+            </div>
+          </div>
 
-          <div class="project-info">
-            <h3>US Accident Analysis (EDA)</h3>
-            <p>
-              Exploratory data analysis to uncover trends and risk factors in U.S.
-              traffic accidents, supporting road safety improvements.
-            </p>
+          <div class="project-name">
+            US Accident Analysis (EDA)
+            <div class="project-tooltip-text">
+              Exploratory data analysis to uncover trends and insights that support
+              improved traffic safety decisions.
+            </div>
           </div>
         </a>
 
@@ -231,7 +279,6 @@
       tab.addEventListener('click', () => {
         tabs.forEach(t => t.classList.remove('active'));
         sections.forEach(s => s.classList.remove('active'));
-
         tab.classList.add('active');
         document.getElementById(tab.dataset.tab).classList.add('active');
       });
