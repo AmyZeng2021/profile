@@ -81,6 +81,63 @@
     .contact-item {
       margin-bottom: 12px;
     }
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.project-card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+
+.project-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+.project-card .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(17, 24, 39, 0.85);
+  color: #ffffff;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.project-card:hover .overlay {
+  opacity: 1;
+}
+
+.project-card h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.project-card p {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #e5e7eb;
+}
+
   </style>
 </head>
 <body>
@@ -96,58 +153,58 @@
       <div class="tab" data-tab="contacts">Contacts</div>
     </div>
 
-    <div id="projects" class="content-section active">
-      <h2>Projects</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Project Name</th>
-            <th>Description</th>
-            <th>Link</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Loisaida Ecolibrium Dashboards</td>
-            <td>This project is to detect the building energy efficiency for multi-family buildings, building solar and storm Water Potentials, and tree map and ecological Benefits in Manhattan.</td>
-            <td><a href="https://github.com/AmyZeng2021/Manhattan_CB3?tab=readme-ov-file" target="_blank">View</a></td>
-          </tr>
-          <tr>
-            <td>HealthCare Fraud Detection</td>
-            <td>This project is to understand the behavior of potential fraud providers, and discover the important parameters that can help us to to that, and finnally to build a predictive model that can flag the potential fraud providers based on the claims fields</td>
-            <td><a href="https://github.com/AmyZeng2021/HealthCare_Fraud_Detection" target="_blank">View</a></td>
-          </tr>
-          <tr>
-            <td>Ames House Price Prediction</td>
-            <td>This project is intended to set up a machine learning model using the train set to predict the sales price for each house in the test set. Root Mean Squared Error (RMSE) between the logarithm of the predicted value and the logarithm of the observed sales price was used as the accuracy metric.</td>
-            <td><a href="https://github.com/AmyZeng2021/House_Price_Prediction" target="_blank">View</a></td>
-          </tr>
-          <tr>
-            <td>https://github.com/AmyZeng2021/US-Accident-Analysis-EDA</td>
-            <td>This is an Exploratory Data Analysis to derive valuable insights that can help improve road safety measures.</td>
-            <td><a href="https://github.com/AmyZeng2021/US-Accident-Analysis-EDA" target="_blank">View</a></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+<div id="projects" class="content-section active">
+  <h2>Projects</h2>
 
-    <div id="about" class="content-section">
-      <h2>About Me</h2>
-      <p>
-        I am a professional with experience in data, technology, and system-oriented projects.
-        I focus on practical execution, reliability, and delivering results that meet real-world
-        requirements. This profile highlights selected projects and skills relevant to
-        enterprise and government-related environments.
-      </p>
-    </div>
+  <div class="project-grid">
 
-    <div id="contacts" class="content-section">
-      <h2>Contact</h2>
-      <div class="contact-item">Email: your.email@example.com</div>
-      <div class="contact-item">LinkedIn: <a href="#" target="_blank">linkedin.com/in/yourname</a></div>
-      <div class="contact-item">GitHub: <a href="#" target="_blank">github.com/yourname</a></div>
-    </div>
+    <a class="project-card" href="https://github.com/AmyZeng2021/Manhattan_CB3?tab=readme-ov-file" target="_blank">
+      <img src="images/loisaida.jpg" alt="Loisaida Ecolibrium">
+      <div class="overlay">
+        <h3>Loisaida Ecolibrium Dashboards</h3>
+        <p>
+          Energy efficiency analysis for multi-family buildings, including solar,
+          storm water potential, and ecological benefits in Manhattan.
+        </p>
+      </div>
+    </a>
+
+    <a class="project-card" href="https://github.com/AmyZeng2021/HealthCare_Fraud_Detection" target="_blank">
+      <img src="images/healthcare.jpg" alt="Healthcare Fraud">
+      <div class="overlay">
+        <h3>Healthcare Fraud Detection</h3>
+        <p>
+          Analyzed provider behavior and built predictive models to flag potential
+          healthcare fraud using claims data.
+        </p>
+      </div>
+    </a>
+
+    <a class="project-card" href="https://github.com/AmyZeng2021/House_Price_Prediction" target="_blank">
+      <img src="images/ames.jpg" alt="House Price Prediction">
+      <div class="overlay">
+        <h3>Ames House Price Prediction</h3>
+        <p>
+          Machine learning model to predict house prices using RMSE on log-transformed
+          sale prices.
+        </p>
+      </div>
+    </a>
+
+    <a class="project-card" href="https://github.com/AmyZeng2021/US-Accident-Analysis-EDA" target="_blank">
+      <img src="images/accident.jpg" alt="US Accident Analysis">
+      <div class="overlay">
+        <h3>US Accident Analysis (EDA)</h3>
+        <p>
+          Exploratory data analysis to uncover insights that help improve road safety
+          measures.
+        </p>
+      </div>
+    </a>
+
   </div>
+</div>
+
 
   <script>
     const tabs = document.querySelectorAll('.tab');
