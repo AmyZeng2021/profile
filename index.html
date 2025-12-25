@@ -1,269 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Professional Profile</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Professional Profile</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      background-color: #f5f7fa;
-      color: #1f2937;
-    }
+<style>
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    background-color: #f5f7fa;
+    color: #1f2937;
+  }
 
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 40px 24px;
-    }
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 24px;
+  }
 
-    header h1 {
-      font-size: 36px;
-      font-weight: 600;
-      margin: 0;
-    }
+  header h1 {
+    font-size: 36px;
+    font-weight: 600;
+    margin: 0;
+  }
 
-    header p {
-      margin-top: 8px;
-      color: #6b7280;
-      font-size: 16px;
-    }
+  header p {
+    margin-top: 8px;
+    color: #6b7280;
+    font-size: 16px;
+  }
 
-    .tabs {
-      display: flex;
-      gap: 24px;
-      border-bottom: 1px solid #e5e7eb;
-      margin: 32px 0 24px;
-    }
+  .tabs {
+    display: flex;
+    gap: 24px;
+    border-bottom: 1px solid #e5e7eb;
+    margin: 32px 0 24px;
+  }
 
-    .tab {
-      padding: 12px 0;
-      cursor: pointer;
-      font-weight: 500;
-      color: #6b7280;
-      border-bottom: 2px solid transparent;
-    }
+  .tab {
+    padding: 12px 0;
+    cursor: pointer;
+    font-weight: 500;
+    color: #6b7280;
+    border-bottom: 2px solid transparent;
+  }
 
-    .tab.active {
-      color: #111827;
-      border-bottom-color: #2563eb;
-    }
+  .tab.active {
+    color: #111827;
+    border-bottom-color: #2563eb;
+  }
 
-    .content-section {
-      display: none;
-      background: #ffffff;
-      border-radius: 12px;
-      padding: 32px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
-    }
+  .content-section {
+    display: none;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 32px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+  }
 
-    .content-section.active {
-      display: block;
-    }
+  .content-section.active {
+    display: block;
+  }
 
-    /* ===== Project List ===== */
+  /* ===== Project List: horizontal ===== */
+  .project-list {
+    display: flex;
+    gap: 32px; /* 每个项目间距 */
+    overflow-x: auto;
+    padding-bottom: 8px;
+  }
 
-    .project-list {
-      display: flex;
-      flex-direction: column;
-      gap: 48px; /* 项目之间更大的间距 */
-      margin-top: 32px;
-    }
+  .project-row {
+    text-decoration: none;
+    flex: 0 0 300px; /* 每个项目固定宽度 */
+    display: block;
+  }
 
+  .project-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 14px 40px rgba(0,0,0,0.12);
+    margin-bottom: 12px; /* 项目名在图片下方时 */
+  }
+
+  .project-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .project-row:hover img {
+    transform: scale(1.04);
+  }
+
+  /* ===== Project Name ===== */
+  .project-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #111827;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  /* ===== Hover Description Overlay ===== */
+  .project-tooltip {
+    position: absolute;
+    inset: 0;
+    background: rgba(17, 24, 39, 0.88);
+    color: #ffffff;
+    padding: 20px;
+    font-size: 14px;
+    line-height: 1.5;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 2;
+  }
+
+  .project-image-wrapper:hover .project-tooltip {
+    opacity: 1;
+  }
+
+  /* Scrollbar styling optional */
+  .project-list::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .project-list::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.2);
+    border-radius: 4px;
+  }
+
+  .project-list::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  @media (max-width: 768px) {
     .project-row {
-      text-decoration: none;
-      display: block;
+      flex: 0 0 80%; /* 手机端每个项目占屏幕 80% */
     }
 
     .project-image-wrapper {
-      position: relative;
-      width: 70%;
-      max-width: 700px;
-      height: 260px;
-      margin: 0 auto;
-      border-radius: 18px;
-      overflow: hidden;
-      box-shadow: 0 14px 40px rgba(0,0,0,0.12);
+      height: 180px;
     }
+  }
 
-    .project-image-wrapper img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.4s ease;
-    }
-
-    .project-row:hover img {
-      transform: scale(1.04);
-    }
-
-    /* ===== Project Name on Image ===== */
-
-    .project-title {
-      position: absolute;
-      left: 24px;
-      bottom: 24px;
-      font-size: 24px;
-      font-weight: 600;
-      color: #ffffff;
-      z-index: 2;
-      text-shadow: 0 4px 14px rgba(0,0,0,0.6);
-      max-width: 80%;
-      line-height: 1.3;
-    }
-
-    /* ===== Hover Description Overlay ===== */
-
-    .project-tooltip {
-      position: absolute;
-      inset: 0;
-      background: rgba(17, 24, 39, 0.88);
-      color: #ffffff;
-      padding: 28px;
-      font-size: 15px;
-      line-height: 1.6;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      display: flex;
-      align-items: center;
-      z-index: 1;
-    }
-
-    .project-image-wrapper:hover .project-tooltip {
-      opacity: 1;
-    }
-
-    @media (max-width: 768px) {
-      .project-image-wrapper {
-        width: 100%; 
-        height: 220px;
-      }
-
-      .project-title {
-        font-size: 20px;
-        left: 18px;
-        bottom: 18px;
-      }
-}
-      
-    }
-  </style>
+</style>
 </head>
 
 <body>
-  <div class="container">
-    <header>
-      <h1>Amy Zeng</h1>
-      <p>Data Engineer / Analyst</p>
-    </header>
+<div class="container">
+  <header>
+    <h1>Amy Zeng</h1>
+    <p>Data Engineer / Analyst</p>
+  </header>
 
-    <div class="tabs">
-      <div class="tab active" data-tab="projects">Projects</div>
-      <div class="tab" data-tab="about">About</div>
-      <div class="tab" data-tab="contacts">Contacts</div>
-    </div>
-
-    <div id="projects" class="content-section active">
-      <h2>Projects</h2>
-
-      <div class="project-list">
-
-        <a class="project-row"
-           href="https://amyzeng2021.github.io/Loisaida/"
-           target="_blank">
-
-          <div class="project-image-wrapper">
-            <img src="Energy.png" alt="Loisaida Ecolibrium">
-
-            <div class="project-title">
-              Loisaida Ecolibrium Dashboards
-            </div>
-
-            <div class="project-tooltip">
-              Ecolibrium Analysis for communities in Manhattan including building energy efficiency, 
-              solar potentials and storm water Potentials for multi-family buildings, tree maps, and ecological benefits.
-            </div>
-          </div>
-        </a>
-
-        <a class="project-row"
-           href="https://github.com/AmyZeng2021/HealthCare_Fraud_Detection"
-           target="_blank">
-
-          <div class="project-image-wrapper">
-            <img src="Fraud.jpg" alt="Healthcare Fraud Detection">
-
-            <div class="project-title">
-              Healthcare Fraud Detection
-            </div>
-
-            <div class="project-tooltip">
-              Analyzed provider behavior and built predictive models to flag potential
-              healthcare fraud using insurance claims data.
-            </div>
-          </div>
-        </a>
-
-        <a class="project-row"
-           href="https://github.com/AmyZeng2021/House_Price_Prediction"
-           target="_blank">
-
-          <div class="project-image-wrapper">
-            <img src="Homeprice.jpg" alt="House Price Prediction">
-
-            <div class="project-title">
-              Ames House Price Prediction
-            </div>
-
-            <div class="project-tooltip">
-              Machine learning models to predict housing prices in Ames, Iowa using log-transformed
-              sale prices and RMSE evaluation.
-            </div>
-          </div>
-        </a>
-
-        <a class="project-row"
-           href="https://github.com/AmyZeng2021/US-Accident-Analysis-EDA"
-           target="_blank">
-
-          <div class="project-image-wrapper">
-            <img src="Accident.jpg" alt="US Accident Analysis">
-
-            <div class="project-title">
-              US Accident Analysis (EDA)
-            </div>
-
-            <div class="project-tooltip">
-              Exploratory data analysis to uncover trends and insights that support
-              improved traffic safety decisions.
-            </div>
-          </div>
-        </a>
-
-      </div>
-    </div>
+  <div class="tabs">
+    <div class="tab active" data-tab="projects">Projects</div>
+    <div class="tab" data-tab="about">About</div>
+    <div class="tab" data-tab="contacts">Contacts</div>
   </div>
 
-  <script>
-    const tabs = document.querySelectorAll('.tab');
-    const sections = document.querySelectorAll('.content-section');
+  <div id="projects" class="content-section active">
+    <h2>Projects</h2>
 
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        tabs.forEach(t => t.classList.remove('active'));
-        sections.forEach(s => s.classList.remove('active'));
-        tab.classList.add('active');
-        document.getElementById(tab.dataset.tab).classList.add('active');
-      });
+    <div class="project-list">
+
+      <a class="project-row" href="https://amyzeng2021.github.io/Loisaida/" target="_blank">
+        <div class="project-image-wrapper">
+          <img src="Energy.png" alt="Loisaida Ecolibrium">
+          <div class="project-tooltip">
+            Ecolibrium Analysis for communities in Manhattan including building energy efficiency, solar potentials, storm water management, and ecological benefits.
+          </div>
+        </div>
+        <div class="project-title">Loisaida Ecolibrium Dashboards</div>
+      </a>
+
+      <a class="project-row" href="https://github.com/AmyZeng2021/HealthCare_Fraud_Detection" target="_blank">
+        <div class="project-image-wrapper">
+          <img src="Fraud.jpg" alt="Healthcare Fraud Detection">
+          <div class="project-tooltip">
+            Analyzed provider behavior and built predictive models to flag potential healthcare fraud using insurance claims data.
+          </div>
+        </div>
+        <div class="project-title">Healthcare Fraud Detection</div>
+      </a>
+
+      <a class="project-row" href="https://github.com/AmyZeng2021/House_Price_Prediction" target="_blank">
+        <div class="project-image-wrapper">
+          <img src="Homeprice.jpg" alt="House Price Prediction">
+          <div class="project-tooltip">
+            Machine learning models to predict housing prices in Ames, Iowa using log-transformed sale prices and RMSE evaluation.
+          </div>
+        </div>
+        <div class="project-title">Ames House Price Prediction</div>
+      </a>
+
+      <a class="project-row" href="https://github.com/AmyZeng2021/US-Accident-Analysis-EDA" target="_blank">
+        <div class="project-image-wrapper">
+          <img src="Accident.jpg" alt="US Accident Analysis">
+          <div class="project-tooltip">
+            Exploratory data analysis to uncover trends and insights that support improved traffic safety decisions.
+          </div>
+        </div>
+        <div class="project-title">US Accident Analysis (EDA)</div>
+      </a>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  const tabs = document.querySelectorAll('.tab');
+  const sections = document.querySelectorAll('.content-section');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      sections.forEach(s => s.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById(tab.dataset.tab).classList.add('active');
     });
-  </script>
+  });
+</script>
 </body>
 </html>
-
-
-
-
-
